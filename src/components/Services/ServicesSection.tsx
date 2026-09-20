@@ -139,10 +139,6 @@ export const ServicesSection: FC<ServicesSectionProps> = ({ onSelectService }) =
       <div className="container">
         {/* Section Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Sparkles size={14} className="pill-icon" />
-            <span>Two Core Engineering Verticals</span>
-          </div>
           <h2 className="section-title">
             Total HVAC-R Solutions & <span className="text-highlight-red">V-Shift Elevators</span>
           </h2>

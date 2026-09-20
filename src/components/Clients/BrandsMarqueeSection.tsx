@@ -1,5 +1,4 @@
 import { type FC } from 'react';
-import { Sparkles } from 'lucide-react';
 import { CLIENT_LOGOS } from '../../data/projectsData';
 
 export const BrandsMarqueeSection: FC = () => {
@@ -14,10 +13,6 @@ export const BrandsMarqueeSection: FC = () => {
       <div className="container">
         {/* Big, Commanding Heading */}
         <div className="section-head-center" style={{ marginBottom: '40px' }}>
-          <div className="section-pill">
-            <Sparkles size={14} className="pill-icon text-red" />
-            <span>Enterprise Client Portfolio</span>
-          </div>
           <h2 className="section-title brands-big-title">
             Trusted by Pakistan's <span className="text-highlight-red">Leading Brands</span> & Industry Giants
           </h2>

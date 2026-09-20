@@ -1,6 +1,5 @@
 import { useState, type FC, type FormEvent } from 'react';
 import {
-  Users,
   Briefcase,
   HardHat,
   Send,
@@ -91,10 +90,6 @@ export const WorkWithUsSection: FC<{ onOpenSchedule: () => void }> = ({ onOpenSc
       <div className="container">
         {/* Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Users size={14} className="pill-icon" />
-            <span>Opportunities & Partnerships</span>
-          </div>
           <h2 className="section-title">
             Work With Us: <span className="text-highlight-red">Careers & Contractor Alliances</span>
           </h2>

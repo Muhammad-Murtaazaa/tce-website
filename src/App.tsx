@@ -40,86 +40,52 @@ export function App() {
         {/* 5. Peeking Service Quick Cards (HVAC, Elevators, Copper/Ducting) */}
         <ServiceCards />
 
-        {/* 6. Real Corporate Trust Highlights Bar */}
-        <section id="about" style={{
-          backgroundColor: '#fafbfc',
-          borderTop: '1px solid #e2e8f0',
-          borderBottom: '1px solid #e2e8f0',
-          padding: '48px 0'
-        }}>
+        {/* 6. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
+        <section className="credibility-trust-section">
           <div className="container">
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '28px',
-              textAlign: 'center'
-            }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-                <div style={{
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'var(--primary-blue-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--primary-blue)'
-                }}>
-                  <Clock size={26} />
+            <div className="credibility-trust-grid">
+              {/* Item 01 */}
+              <div className="credibility-trust-card">
+                <div className="credibility-card-top">
+                  <div className="credibility-icon-badge badge-blue">
+                    <Clock size={22} />
+                  </div>
                 </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>24/7 Rapid Field Response</h4>
-                <p style={{ fontSize: '14px', color: '#64748b' }}>Live diagnostic and rescue dispatch ready across Multan and South Punjab.</p>
+                <h4 className="credibility-title">24/7 Rapid Field Response</h4>
+                <p className="credibility-desc">Live diagnostic and rescue dispatch ready across Multan and South Punjab.</p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-                <div style={{
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'var(--accent-red-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--accent-red)'
-                }}>
-                  <Award size={26} />
+              {/* Item 02 */}
+              <div className="credibility-trust-card">
+                <div className="credibility-card-top">
+                  <div className="credibility-icon-badge badge-steel">
+                    <Award size={22} />
+                  </div>
                 </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>Established 2010 in Multan</h4>
-                <p style={{ fontSize: '14px', color: '#64748b' }}>Over 15 years of proven mechanical climate engineering excellence.</p>
+                <h4 className="credibility-title">15+ Years Track Record</h4>
+                <p className="credibility-desc">Over 15 years of proven mechanical climate engineering excellence in Multan.</p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-                <div style={{
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'var(--primary-blue-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--primary-blue)'
-                }}>
-                  <ShieldCheck size={26} />
+              {/* Item 03 */}
+              <div className="credibility-trust-card">
+                <div className="credibility-card-top">
+                  <div className="credibility-icon-badge badge-emerald">
+                    <ShieldCheck size={22} />
+                  </div>
                 </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>100% OEM Guaranteed</h4>
-                <p style={{ fontSize: '14px', color: '#64748b' }}>Authorized partnerships with Daikin, Midea, Acson, Cross Air & AirX.</p>
+                <h4 className="credibility-title">100% OEM Guaranteed</h4>
+                <p className="credibility-desc">Authorized partnerships with Daikin, Midea, Acson, Cross Air & AirX.</p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-                <div style={{
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'var(--accent-red-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--accent-red)'
-                }}>
-                  <Wrench size={26} />
+              {/* Item 04 */}
+              <div className="credibility-trust-card">
+                <div className="credibility-card-top">
+                  <div className="credibility-icon-badge badge-crimson">
+                    <Wrench size={22} />
+                  </div>
                 </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>Certified HVAC & Lift Squads</h4>
-                <p style={{ fontSize: '14px', color: '#64748b' }}>Specialists trained for 50°C high-ambient VRV and precision VVVF elevators.</p>
+                <h4 className="credibility-title">Certified HVAC & Lift Squads</h4>
+                <p className="credibility-desc">Specialists trained for 50°C high-ambient VRV and precision VVVF elevators.</p>
               </div>
             </div>
           </div>

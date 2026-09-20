@@ -76,7 +76,7 @@
   width: 360px;
   max-width: calc(100vw - 32px);
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 6px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
   border: 1px solid #e2e8f0;
   z-index: 100;
@@ -205,7 +205,7 @@
   bottom: 80px;
   left: 24px;
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 18px;
   width: 260px;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
@@ -256,7 +256,7 @@
 
 .modal-card {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 6px;
   width: 100%;
   max-width: 580px;
   max-height: 90vh;
@@ -378,7 +378,7 @@
   gap: 32px;
   background: #ffffff;
   border: 1.5px solid #cbd5e1;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 36px;
   box-shadow: 0 16px 36px -8px rgba(11, 78, 162, 0.08);
 }
@@ -527,7 +527,7 @@
 .calc-results-column {
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
   border: 1.5px solid #bfdbfe;
-  border-radius: 18px;
+  border-radius: 6px;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -545,7 +545,7 @@
 .results-hero-box {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 14px;
+  border-radius: 6px;
   padding: 20px;
   text-align: center;
   margin-bottom: 20px;
@@ -648,7 +648,7 @@
   gap: 28px;
   background: #ffffff;
   border: 1.5px solid #cbd5e1;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 28px;
   box-shadow: 0 16px 36px -8px rgba(12, 18, 28, 0.08);
 }
@@ -681,7 +681,7 @@
 .fleet-item-card {
   background: #fafbfc;
   border: 1.5px solid #e2e8f0;
-  border-radius: 14px;
+  border-radius: 6px;
   padding: 14px 16px;
   cursor: pointer;
   transition: all 0.22s ease;
@@ -761,7 +761,7 @@
 .radar-telemetry-panel {
   background: #f8fafc;
   border: 1.5px solid #e2e8f0;
-  border-radius: 18px;
+  border-radius: 6px;
   padding: 26px;
   display: flex;
   flex-direction: column;
@@ -819,7 +819,7 @@
 .telemetry-metric-card {
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 14px 16px;
 }
 

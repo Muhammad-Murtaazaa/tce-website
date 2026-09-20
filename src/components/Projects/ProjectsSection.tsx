@@ -145,10 +145,6 @@ export const ProjectsSection: FC = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Building2 size={14} className="pill-icon" />
-            <span>Interactive Project Showcase</span>
-          </div>
           <h2 className="section-title">
             Flagship HVAC-R & <span className="text-highlight-red">V-Shift Elevator</span> Projects
           </h2>
@@ -204,13 +200,6 @@ export const ProjectsSection: FC = () => {
           <div className="carousel-status-info">
             <span>
               Showing projects <strong>{filteredProjects.length > 0 ? currentPage * cardsPerPage + 1 : 0}–{Math.min((currentPage + 1) * cardsPerPage, filteredProjects.length)}</strong> of <strong>{filteredProjects.length}</strong>
-            </span>
-            <span
-              className="carousel-live-indicator"
-              title={isPaused ? "Auto-slide paused while hovering" : "Auto-slide active every 4s"}
-            >
-              <span className={`carousel-live-dot ${isPaused ? 'paused' : 'playing'}`} />
-              <span>{isPaused ? 'Paused' : 'Auto-Rotating'}</span>
             </span>
             {(verticalFilter !== 'all' || sectorFilter !== 'all') && (
               <button
@@ -379,7 +368,7 @@ export const ProjectsSection: FC = () => {
         <div className="projects-metrics-row">
           <div className="project-metric-card">
             <div className="metric-icon-wrap metric-blue">
-              <Building2 size={24} />
+              <Building2 size={22} />
             </div>
             <div className="metric-card-content">
               <span className="metric-card-val">33+</span>
@@ -389,7 +378,7 @@ export const ProjectsSection: FC = () => {
 
           <div className="project-metric-card">
             <div className="metric-icon-wrap metric-green">
-              <CheckCircle2 size={24} />
+              <CheckCircle2 size={22} />
             </div>
             <div className="metric-card-content">
               <span className="metric-card-val">100%</span>
@@ -399,7 +388,7 @@ export const ProjectsSection: FC = () => {
 
           <div className="project-metric-card">
             <div className="metric-icon-wrap metric-red">
-              <Clock size={24} />
+              <Clock size={22} />
             </div>
             <div className="metric-card-content">
               <span className="metric-card-val">24/7</span>

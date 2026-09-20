@@ -1,5 +1,5 @@
 import { useState, useMemo, type FC } from 'react';
-import { Calculator, Sun, Users, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Sun, Users, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface HvacBtuCalculatorProps {
   onOpenSchedule: (recommendedTonnage?: string) => void;
@@ -88,10 +88,6 @@ export const HvacBtuCalculator: FC<HvacBtuCalculatorProps> = ({ onOpenSchedule }
       <div className="container">
         {/* Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Calculator size={14} className="pill-icon" />
-            <span>Interactive Engineering Tool</span>
-          </div>
           <h2 className="section-title">
             HVAC Load & <span className="text-highlight-red">BTU Sizing Calculator</span>
           </h2>

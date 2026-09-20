@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect, type FC } from 'react';
 import {
-  Layers,
   Wind,
   Building2,
   Activity,
@@ -203,10 +202,6 @@ export const ScopeOfWorkSection: FC<{ onOpenSchedule: () => void }> = ({ onOpenS
       <div className="container">
         {/* Section Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Layers size={14} className="pill-icon" />
-            <span>Interactive Engineering Scope</span>
-          </div>
           <h2 className="section-title">
             Our Defined <span className="text-highlight-red">Scope of Work</span>
           </h2>

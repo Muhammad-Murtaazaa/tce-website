@@ -110,7 +110,7 @@
   align-items: center;
   gap: 5px;
   padding: 8px 14px;
-  border-radius: 9999px;
+  border-radius: 4px;
   font-size: 14px;
   font-weight: 700;
   color: #334155;
@@ -141,7 +141,7 @@
   background: rgba(11, 78, 162, 0.1);
   color: var(--primary-blue, #0b4ea2);
   padding: 1px 7px;
-  border-radius: 9999px;
+  border-radius: 4px;
   margin-left: 2px;
 }
 
@@ -156,7 +156,7 @@
   width: 740px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 18px;
+  border-radius: 6px;
   box-shadow: 
     0 24px 48px -12px rgba(11, 78, 162, 0.2),
     0 8px 16px -4px rgba(0, 0, 0, 0.06);
@@ -241,8 +241,8 @@
   margin-bottom: -22px;
   padding: 12px 22px;
   border-top: 1px solid #e2e8f0;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .dropdown-footer-info {
@@ -265,7 +265,7 @@
   border: none;
   cursor: pointer;
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: all 0.15s ease;
 }
 
@@ -290,7 +290,7 @@
   gap: 9px;
   background-color: #ffffff;
   border: 1.5px solid rgba(11, 78, 162, 0.25);
-  border-radius: 9999px;
+  border-radius: 4px;
   padding: 6px 14px;
   color: var(--navy-dark, #0c121c);
   text-decoration: none;
@@ -307,7 +307,7 @@
 .phone-icon-wrap {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 4px;
   background: rgba(11, 78, 162, 0.1);
   color: var(--primary-blue, #0b4ea2);
   display: flex;
@@ -343,7 +343,7 @@
   font-weight: 800;
   font-size: 13px;
   padding: 9px 18px;
-  border-radius: 9999px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(11, 78, 162, 0.25);
@@ -488,7 +488,7 @@
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   padding: 6px 12px;
-  border-radius: 9999px;
+  border-radius: 4px;
   font-size: 12px;
   font-weight: 700;
   color: #334155;
@@ -573,7 +573,7 @@
   font-weight: 800;
   font-size: 14px;
   padding: 12px 20px;
-  border-radius: 9999px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(11, 78, 162, 0.25);
@@ -586,7 +586,7 @@
   gap: 10px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 9999px;
+  border-radius: 4px;
   padding: 10px 18px;
   color: #0c121c;
   text-decoration: none;

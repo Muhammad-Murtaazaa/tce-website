@@ -1,5 +1,5 @@
 import { useState, type FC } from 'react';
-import { Radio, Truck, MapPin, CheckCircle2, Phone, ArrowRight } from 'lucide-react';
+import { Truck, MapPin, CheckCircle2, Phone, ArrowRight } from 'lucide-react';
 
 interface FleetUnit {
   id: string;
@@ -86,10 +86,6 @@ export const LiveDispatchMap: FC<LiveDispatchMapProps> = ({ onOpenSchedule, onOp
       <div className="container">
         {/* Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Radio size={14} className="pill-icon text-red animate-pulse-dot" />
-            <span>Real-Time Operations Telemetry</span>
-          </div>
           <h2 className="section-title">
             Live Service Dispatch & <span className="text-highlight-red">Fleet Radar</span>
           </h2>

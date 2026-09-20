@@ -1,16 +1,14 @@
 import { type FC } from 'react';
 import {
-  Award,
-  Building2,
   CheckCircle2,
   Target,
   Compass,
   Factory,
-  Utensils,
-  Landmark,
-  HeartPulse,
-  GraduationCap,
-  ShoppingBag
+  Snowflake,
+  Building2,
+  ShieldCheck,
+  Layers,
+  Store
 } from 'lucide-react';
 import { OEM_BRANDS, COMPANY_INFO } from '../../data/companyData';
 
@@ -25,8 +23,6 @@ interface ClientSector {
   highlight: string;
   badge: string;
   icon: typeof Factory;
-  accentColor: string;
-  accentBg: string;
   logos: ClientLogo[];
 }
 
@@ -37,8 +33,6 @@ const CLIENT_SECTORS: ClientSector[] = [
     highlight: 'Pak Arab Fertilizer, FFC Goth Machi, Patron Chemicals & UCH Power',
     badge: 'Industrial Duty',
     icon: Factory,
-    accentColor: '#0284c7',
-    accentBg: '#e0f2fe',
     logos: [
       { name: 'Pak Arab Fertilizer', logo: '/Pakarab.png' },
       { name: 'FFC Goth Machi', logo: '/FFC.png' },
@@ -51,10 +45,8 @@ const CLIENT_SECTORS: ClientSector[] = [
     name: 'FMCG & Food Processing',
     category: 'Production Plants & Cold Lines',
     highlight: 'PepsiCo Industrial, Suncrop Foods & Fazal Cloth Mills',
-    badge: 'Critical Uptime',
-    icon: Utensils,
-    accentColor: '#dc2626',
-    accentBg: '#fee2e2',
+    badge: 'Cold Chain Uptime',
+    icon: Snowflake,
     logos: [
       { name: 'PepsiCo Industrial', logo: '/Pepsico-Emblem-removebg-preview.png' },
       { name: 'Suncrop Foods', logo: '/Suncrop-Foods-Logo-removebg-preview.png' },
@@ -67,9 +59,7 @@ const CLIENT_SECTORS: ClientSector[] = [
     category: 'Financial HQs & Plaza Networks',
     highlight: 'Allied Bank Regional Head Office, Sharif Complex & Servo Oil',
     badge: 'VRV Multi-Zone',
-    icon: Landmark,
-    accentColor: '#16a34a',
-    accentBg: '#dcfce7',
+    icon: Building2,
     logos: [
       { name: 'Allied Bank', logo: '/Allied%20Bank.png' },
       { name: 'Sharif Complex', logo: '/Sharif%20COmplex.png' },
@@ -81,10 +71,8 @@ const CLIENT_SECTORS: ClientSector[] = [
     name: 'Healthcare & Cleanrooms',
     category: 'Hospitals & Medical Centers',
     highlight: 'Ayat Hospital Multan & Al-Shifa Hospital Faisalabad',
-    badge: 'Clean Air Standards',
-    icon: HeartPulse,
-    accentColor: '#9333ea',
-    accentBg: '#f3e8ff',
+    badge: 'ISO Cleanroom Standards',
+    icon: ShieldCheck,
     logos: [
       { name: 'Ayat Hospital Multan', logo: '/Ayat%20Hospital.png' },
       { name: 'Shifa International Hospital', logo: '/Shifa%20International%20HOspital.png' }
@@ -95,9 +83,7 @@ const CLIENT_SECTORS: ClientSector[] = [
     category: 'Universities & Academic Blocks',
     highlight: 'University of Management and Technology (UMT) Lahore',
     badge: 'Institutional Scale',
-    icon: GraduationCap,
-    accentColor: '#d97706',
-    accentBg: '#fef3c7',
+    icon: Layers,
     logos: [
       { name: 'UMT Lahore', logo: '/UMT.png' },
       { name: 'Sinaco Engineers', logo: '/Sinaco%20Engineers.png' }
@@ -107,10 +93,8 @@ const CLIENT_SECTORS: ClientSector[] = [
     name: 'Hospitality, F&B & Retail Malls',
     category: 'Fast-Casual, Marquees & Malls',
     highlight: 'KFC South Punjab, 14th Street Pizza, SOHA Mall & DHA Projects',
-    badge: 'High Footfall',
-    icon: ShoppingBag,
-    accentColor: '#e11d48',
-    accentBg: '#ffe4e6',
+    badge: 'Concourse & Kitchen MEP',
+    icon: Store,
     logos: [
       { name: 'KFC South Punjab', logo: '/KFC.png' },
       { name: '14th Street Pizza', logo: '/14%20street%20pizza.png' },
@@ -127,10 +111,6 @@ export const ClientsSection: FC = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-head-center">
-          <div className="section-pill">
-            <Award size={14} className="pill-icon" />
-            <span>Authorized Brands & Enterprise Reach</span>
-          </div>
           <h2 className="section-title">
             Factory Authorized Partnerships & <span className="text-highlight-red">Industry Sectors</span>
           </h2>
@@ -196,10 +176,6 @@ export const ClientsSection: FC = () => {
         {/* 3. The Industries We've Worked With */}
         <div className="industries-section-wrap">
           <div className="industries-header">
-            <div className="section-pill">
-              <Building2 size={14} className="pill-icon" />
-              <span>Sector Track Record & Deployment</span>
-            </div>
             <h3 className="industries-title">
               The Industries <span className="text-highlight-red">We've Worked With</span>
             </h3>
@@ -214,18 +190,10 @@ export const ClientsSection: FC = () => {
               return (
                 <div key={idx} className="client-sector-card">
                   <div className="client-sector-top">
-                    <div
-                      className="client-sector-icon-box"
-                      style={{ backgroundColor: sector.accentBg, color: sector.accentColor }}
-                    >
+                    <div className="client-sector-icon-box">
                       <SectorIcon size={22} />
                     </div>
-                    <span
-                      className="client-sector-badge"
-                      style={{ color: sector.accentColor, backgroundColor: sector.accentBg }}
-                    >
-                      {sector.badge}
-                    </span>
+                    <span className="client-sector-badge">{sector.badge}</span>
                   </div>
 
                   <div className="client-sector-main">
