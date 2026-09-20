@@ -1,0 +1,879 @@
+/* Hero Section Container */
+.hero-wrapper {
+  position: relative;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  padding-top: 36px;
+  padding-bottom: 40px;
+  background: linear-gradient(135deg, #eef4f9 0%, #e5eef7 50%, #f1f6fb 100%);
+  overflow: hidden;
+}
+
+.hero-mesh-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(11, 78, 162, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 40%, rgba(234, 88, 12, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(2, 132, 199, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Hero Content Grid & Media Showcase */
+.hero-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.hero-main-grid {
+  display: flex;
+  align-items: center;
+  min-height: 400px;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0;
+  max-width: 540px;
+  position: relative;
+  z-index: 15;
+}
+
+/* ==========================================================================
+   Full-Bleed Blended Hero Team Visual (Seamless Zero-Seam Alpha Blend)
+   ========================================================================== */
+.hero-bleed-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.4) 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.4) 90%, transparent 100%);
+}
+
+.hero-bleed-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 58%;
+  min-width: 660px;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 0%;
+  display: block;
+  
+  /* Smooth edge fade that reaches full solid opacity early so the TCE & Technicool Engineering building sign is crisp and fully visible */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 2%,
+    rgba(0, 0, 0, 0.2) 6%,
+    rgba(0, 0, 0, 0.6) 12%,
+    rgba(0, 0, 0, 0.92) 18%,
+    #000 24%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 2%,
+    rgba(0, 0, 0, 0.2) 6%,
+    rgba(0, 0, 0, 0.6) 12%,
+    rgba(0, 0, 0, 0.92) 18%,
+    #000 24%,
+    #000 100%
+  );
+}
+
+.hero-badge-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.22);
+  flex-shrink: 0;
+  animation: pulse-dot 2s infinite;
+}
+
+.hero-badge-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.hero-badge-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0c121c;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.hero-badge-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
+  margin-bottom: 18px;
+}
+
+.eyebrow-badge {
+  background: var(--primary-blue-subtle);
+  color: var(--primary-blue);
+  border: 1px solid rgba(11, 78, 162, 0.2);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1.1;
+  font-weight: 900;
+  color: #0c121c;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.headline-highlight {
+  color: var(--primary-blue);
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 16px;
+  line-height: 1.55;
+  color: #334155;
+  font-weight: 500;
+  margin-bottom: 20px;
+  max-width: 560px;
+}
+
+.hero-key-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.key-point-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-hero-tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 22px;
+  border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
+  transition: all 0.22s ease;
+  text-decoration: none;
+}
+
+.btn-hero-tertiary:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Thermal Hero Slider Card
+   ========================================================================== */
+.hero-interactive-col {
+  width: 100%;
+}
+
+.thermal-hero-card {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 24px;
+  padding: 26px 26px 20px 26px;
+  box-shadow: 0 16px 36px -8px rgba(11, 78, 162, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.thermal-hero-card:hover {
+  border-color: var(--primary-blue);
+}
+
+.thermal-card-glow-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.thermal-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.thermal-badge-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.thermal-tagline-pill {
+  font-size: 12px;
+  font-weight: 800;
+  font-style: italic;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.thermal-meters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .thermal-meters-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.thermal-meter-box {
+  background: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.meter-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.text-cyan-accent {
+  color: #0284c7;
+}
+
+.text-amber-accent {
+  color: #ea580c;
+}
+
+.meter-reading {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.temp-val {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.temp-unit {
+  font-size: 14px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.meter-status-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.status-dot-active {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+/* Slider Controls */
+.thermal-slider-container {
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+.slider-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.preset-btn.active, .preset-btn:hover {
+  background: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+}
+
+.slider-track-wrap {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.thermal-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.thermal-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--primary-blue);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+.thermal-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider-fill-glow {
+  position: absolute;
+  left: 0;
+  top: 7px;
+  height: 10px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slider-legend-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.legend-cold {
+  color: #0284c7;
+}
+
+.legend-hint {
+  color: #94a3b8;
+}
+
+.legend-hot {
+  color: #ea580c;
+}
+
+/* Telemetry Strip */
+.thermal-telemetry-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  z-index: 2;
+  gap: 12px;
+}
+
+.telemetry-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.telemetry-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.telemetry-val {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.telemetry-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.telemetry-divider {
+  width: 1px;
+  height: 24px;
+  background: #cbd5e1;
+}
+
+.btn-thermal-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.btn-thermal-book:hover {
+  background: var(--primary-blue-hover);
+  transform: translateY(-1px);
+}
+
+/* Hero Action Buttons */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--accent-red) 0%, #b91c1c 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 17px;
+  padding: 15px 34px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(217, 35, 46, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(217, 35, 46, 0.45);
+  background: linear-gradient(135deg, #ef4444 0%, #c81e28 100%);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-size: 17px;
+  padding: 14px 30px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--primary-blue);
+  box-shadow: 0 4px 14px rgba(11, 78, 162, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-hero-secondary:hover {
+  background: var(--primary-blue);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(11, 78, 162, 0.25);
+}
+
+/* Hero Brands Trust Strip - Large Factory Authorized Equipment Logos */
+.hero-brands-trust {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-brands-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+}
+
+.hero-brands-logos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-brand-chip {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 8px 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 52px;
+}
+
+.hero-brand-chip:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(11, 78, 162, 0.16);
+}
+
+.hero-brand-logo-img {
+  height: 34px;
+  max-width: 120px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.hero-brand-chip:hover .hero-brand-logo-img {
+  transform: scale(1.05);
+}
+
+/* Peeking Service Cards Container (Placed cleanly directly below the hero) */
+.services-overlap-section {
+  position: relative;
+  z-index: 25;
+  margin-top: 0;
+  padding-top: 24px;
+  padding-bottom: 50px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 28px;
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 14px 32px rgba(12, 18, 28, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-red);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: #93c5fd;
+  box-shadow: 0 24px 45px rgba(11, 78, 162, 0.16);
+}
+
+.service-card:hover::after {
+  transform: scaleX(1);
+}
+
+.service-icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover .service-icon-box {
+  transform: scale(1.06);
+}
+
+.service-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0c121c;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.service-desc {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.service-link-arrow {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent-red);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.2s ease;
+}
+
+.service-card:hover .service-link-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+  .hero-headline {
+    font-size: 54px;
+  }
+  .hero-overlay-gradient-left {
+    width: 65%;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-wrapper {
+    min-height: auto;
+    padding-top: 28px;
+    padding-bottom: 32px;
+  }
+
+  .hero-bleed-backdrop {
+    width: 100%;
+    opacity: 0.16;
+  }
+
+  .hero-bleed-img {
+    width: 100%;
+    min-width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-main-grid {
+    justify-content: center;
+    min-height: auto;
+  }
+
+  .hero-brands-trust {
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-brands-logos {
+    justify-content: center;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-headline {
+    font-size: 46px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-eyebrow::before {
+    display: none;
+  }
+
+  .services-overlap-section {
+    margin-top: 20px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+
+  .service-card {
+    padding: 22px 14px;
+    border-radius: 18px;
+  }
+
+  .service-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px;
+  }
+
+  .service-card {
+    padding: 16px 8px;
+    border-radius: 14px;
+  }
+
+  .service-icon-box {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+  }
+
+  .service-icon-box svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .service-title {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .service-desc {
+    font-size: 10.5px;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .service-link-arrow {
+    font-size: 10.5px;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 38px;
+  }
+  .hero-description {
+    font-size: 15px;
+  }
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

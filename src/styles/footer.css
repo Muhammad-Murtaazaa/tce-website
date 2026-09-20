@@ -1,0 +1,375 @@
+/* ==========================================================================
+   Technicool Engineering (TCE) - Clean, Simplified Footer Styles
+   ========================================================================== */
+
+.site-footer {
+  background-color: #0c121c;
+  color: #cbd5e1;
+  border-top: 1px solid #1e2634;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 24/7 Field Support Quick Bar */
+.footer-quick-bar {
+  background: linear-gradient(90deg, #0f1a2a 0%, #152438 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 0;
+}
+
+.footer-quick-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.quick-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.quick-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: pulse-dot 2s infinite;
+}
+
+.quick-bar-label {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.quick-bar-sep {
+  color: #475569;
+}
+
+.quick-bar-sub {
+  color: #94a3b8;
+  font-size: 12.5px;
+}
+
+.quick-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-quick-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-quick-call:hover {
+  background-color: #0b4ea2;
+  border-color: #0b4ea2;
+}
+
+.btn-quick-schedule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0b4ea2 0%, #0284c7 100%);
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-quick-schedule:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Main Clean Footer Body */
+.footer-main-body {
+  padding: 48px 0 36px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* Brand Column */
+.footer-col-main {
+  padding-right: 16px;
+}
+
+.footer-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  background: #ffffff;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.footer-brand-name {
+  font-size: 18px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.footer-brand-sub {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin: 2px 0 0 0;
+}
+
+.footer-short-tagline {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.footer-contact-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-compact-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.text-blue {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+/* Navigation Columns */
+.footer-col-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.footer-clean-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-clean-links a {
+  color: #94a3b8;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.footer-clean-links a:hover {
+  color: #38bdf8;
+  padding-left: 4px;
+}
+
+/* Authorized Partners Column */
+.footer-partners-desc {
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.footer-brands-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-chip {
+  height: 24px;
+  width: auto;
+  max-width: 62px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 3px 6px;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.footer-chip:hover {
+  transform: translateY(-2px);
+}
+
+/* Bottom Legal Bar */
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 0;
+  background-color: #080d15;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-bottom-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+
+.bottom-copy {
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+.bottom-credit-separator {
+  color: #334155;
+  font-size: 14px;
+  user-select: none;
+}
+
+.bottom-developer-credit {
+  font-size: 12.5px;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.omnysync-credit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.omnysync-credit-badge:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.22);
+}
+
+.omnysync-brand-name {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.omnysync-brand-url {
+  font-size: 10.5px;
+  color: #94a3b8;
+  font-family: 'Consolas', 'Courier New', monospace;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.omnysync-credit-badge:hover .omnysync-brand-url {
+  color: #ffffff;
+}
+
+.btn-back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid #1e2634;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-back-to-top:hover {
+  color: #ffffff;
+  border-color: #38bdf8;
+}
+
+/* Responsive Footer */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-quick-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .footer-bottom-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .bottom-credit-separator {
+    display: none;
+  }
+}

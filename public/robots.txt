@@ -1,0 +1,6 @@
+# Technicool Engineering (TCE) & V-Shift Elevators - robots.txt
+User-agent: *
+Allow: /
+
+# Direct search engine spiders to primary XML sitemap
+Sitemap: https://technicoolengineering.com/sitemap.xml
