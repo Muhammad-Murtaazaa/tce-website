@@ -32,21 +32,51 @@ export const ProjectsSection: FC = () => {
     });
   }, [verticalFilter, sectorFilter]);
 
-  const cardsPerPage = 3;
+  // Responsive cards per page calculation (1 on mobile, 2 on tablet, 3 on desktop)
+  const [cardsPerPage, setCardsPerPage] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 768) return 1;
+      if (window.innerWidth < 1024) return 2;
+    }
+    return 3;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCardsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setCardsPerPage(2);
+      } else {
+        setCardsPerPage(3);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const totalPages = Math.max(1, Math.ceil(filteredProjects.length / cardsPerPage));
 
-  // Reset to first slide whenever filters change
+  // Reset to first slide whenever filters or cardsPerPage change
   useEffect(() => {
     setCurrentPage(0);
-  }, [verticalFilter, sectorFilter]);
+  }, [verticalFilter, sectorFilter, cardsPerPage]);
 
-  // Continuous autoplay motion: automatically advances projects every 4 seconds
+  // Ensure currentPage is always within bounds
+  useEffect(() => {
+    if (currentPage >= totalPages) {
+      setCurrentPage(Math.max(0, totalPages - 1));
+    }
+  }, [totalPages, currentPage]);
+
+  // Continuous autoplay motion: automatically advances projects every 4.5 seconds
   useEffect(() => {
     if (isPaused || totalPages <= 1) return;
     const interval = setInterval(() => {
       setSlideDirection('next');
       setCurrentPage((prev) => (prev + 1) % totalPages);
-    }, 4000);
+    }, 4500);
     return () => clearInterval(interval);
   }, [isPaused, totalPages]);
 
@@ -58,6 +88,36 @@ export const ProjectsSection: FC = () => {
   const handleNextPage = () => {
     setSlideDirection('next');
     setCurrentPage((prev) => (prev + 1) % totalPages);
+  };
+
+  // Touch Swipe Gesture Support for Mobile
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    setIsPaused(false);
+    if (touchStartX === null || touchEndX === null) return;
+    const diff = touchStartX - touchEndX;
+    const threshold = 40; // minimum swipe distance in px
+    if (diff > threshold) {
+      // Swiped left -> next
+      handleNextPage();
+    } else if (diff < -threshold) {
+      // Swiped right -> prev
+      handlePrevPage();
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
   };
 
   const currentProjects = useMemo(() => {
@@ -189,12 +249,15 @@ export const ProjectsSection: FC = () => {
           </div>
         </div>
 
-        {/* 4. Projects Carousel Cards Grid with Animated Motion */}
+        {/* 4. Projects Carousel Cards Grid with Animated Motion & Touch Gestures */}
         <div
           className="projects-carousel-wrapper"
           key={currentPage}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <div className="projects-grid">
             {currentProjects.map((project, pIdx) => (
@@ -282,17 +345,33 @@ export const ProjectsSection: FC = () => {
           </div>
         </div>
 
-        {/* Dot Indicators */}
+        {/* Dot Indicators & Mobile Progress */}
         {totalPages > 1 && (
-          <div className="carousel-dots-row">
-            {Array.from({ length: totalPages }).map((_, dotIdx) => (
-              <button
-                key={dotIdx}
-                className={`carousel-dot ${dotIdx === currentPage ? 'active' : ''}`}
-                onClick={() => setCurrentPage(dotIdx)}
-                aria-label={`Jump to slide ${dotIdx + 1}`}
+          <div className="carousel-dots-container">
+            {/* Mobile Progress Bar (active on mobile) */}
+            <div className="carousel-mobile-progress-wrap" aria-hidden="true">
+              <div
+                className="carousel-mobile-progress-bar"
+                style={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
               />
-            ))}
+            </div>
+
+            {/* Desktop & Tablet Dot Indicators */}
+            <div className="carousel-dots-row">
+              {Array.from({ length: totalPages }).map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  className={`carousel-dot ${dotIdx === currentPage ? 'active' : ''}`}
+                  onClick={() => setCurrentPage(dotIdx)}
+                  aria-label={`Jump to slide ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Mobile Swipe Hint */}
+            <div className="carousel-swipe-hint">
+              <span>← Swipe cards or tap arrows to navigate ({currentPage + 1}/{totalPages}) →</span>
+            </div>
           </div>
         )}
 
