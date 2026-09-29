@@ -9,7 +9,9 @@ export type SectorType =
   | 'Retail'
   | 'Education'
   | 'Religious'
-  | 'Residential';
+  | 'Residential'
+  | 'Hospitality'
+  | 'Government';
 
 export interface Project {
   id: string;
@@ -60,7 +62,7 @@ export const PROJECTS_LIST: Project[] = [
     system: 'Rooftop Packaged Units & Central Air Distribution',
     brandOrType: 'Daikin & Clint Rooftop Packages',
     description: 'High-tonnage rapid chill capacity engineered for extreme peak guest density and high-ceiling air circulation.',
-    logo: '/Daikin.png',
+    logo: '/DHA Multan.png',
     image: '/projects/the arena marquww dha multan.png'
   },
   {
@@ -205,7 +207,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'Daikin & Hisense Dual Architecture',
     description: 'Extensive food processing and corporate climate solution maintaining strict humidity and hygiene standards.',
     logo: '/Suncrop-Foods-Logo-removebg-preview.png',
-    image: '/projects/patron chemicals industrial estate.png'
+    image: '/projects/suncrop foods processing complex.jpg'
   },
   {
     id: 'hvac-16',
@@ -217,7 +219,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'Midea & Daikin Commercial',
     description: 'Factory floor administrative zones and dispatch bays engineered for thermal resilience during peak 48°C ambient heat.',
     logo: '/Yaqoob Group.png',
-    image: '/projects/fazal cloths head office.png'
+    image: '/projects/yaqoob group building.jpg'
   },
   {
     id: 'hvac-17',
@@ -229,7 +231,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'Daikin Inverter Systems',
     description: 'Architectural executive office climate distribution with concealed refrigerant lines and customized diffusers.',
     logo: '/Yaqoob Group.png',
-    image: '/projects/Allied bank head office multan.png'
+    image: '/projects/yaqoob group building.jpg'
   },
   {
     id: 'hvac-18',
@@ -315,6 +317,54 @@ export const PROJECTS_LIST: Project[] = [
     logo: '/FFC.png',
     image: '/projects/ffc gouth machi.png'
   },
+  {
+    id: 'hvac-25',
+    name: 'Zaver PC Hotel',
+    location: 'Koh-e-Batil, Gwadar',
+    vertical: 'hvac',
+    sector: 'Hospitality',
+    system: 'Coastal VRV Climate Architecture & Precision IAQ',
+    brandOrType: 'Daikin VRV System',
+    description: 'Comprehensive climate control engineering featuring marine-grade corrosion-protected condensing units, multi-zone VRV guest suites, and low-noise air distribution tailored for high-humidity coastal environments.',
+    logo: '/PC Hotel Gwadar.jpg',
+    image: '/projects/zaver pc hotel gwadar.jpg'
+  },
+  {
+    id: 'hvac-26',
+    name: 'Quetta Safe City Project',
+    location: 'Central Command Complex, Quetta',
+    vertical: 'hvac',
+    sector: 'Government',
+    system: 'Mission-Critical Precision Cooling & 24/7 Command Center IAQ',
+    brandOrType: 'Daikin VRV & Precision Climate',
+    description: 'Engineered 24/7 continuous thermal management for centralized server rooms and command centers, maintaining precision humidity, low ambient heating/cooling, and zero-downtime air distribution.',
+    logo: '/Quetta Safe City.jpg',
+    image: '/projects/quetta safe city.jpg'
+  },
+  {
+    id: 'hvac-27',
+    name: 'Grand Mall',
+    location: 'DHA Quetta',
+    vertical: 'hvac',
+    sector: 'Retail',
+    system: 'Multi-Zone Retail VRV & All-Weather Thermal Engineering',
+    brandOrType: 'Daikin VRV Heat Recovery',
+    description: 'Comprehensive retail climate infrastructure delivering simultaneous low-ambient winter heating and summer cooling, backed by centralized air handling and automated fresh air ventilation.',
+    logo: '/DHA Quetta.jpg',
+    image: '/projects/grand mall dha quetta.jpg'
+  },
+  {
+    id: 'hvac-28',
+    name: 'Yunus Energy Wind Farm',
+    location: 'Jhimpir Wind Corridor, Thatta',
+    vertical: 'hvac',
+    sector: 'Industrial',
+    system: 'Industrial Thermal Management & Substation Environmental Control',
+    brandOrType: 'Daikin Heavy Industrial',
+    description: 'Heavy-duty precision cooling and positive-pressure ventilation engineered for high-voltage switchgear rooms, SCADA control centers, and dust-prone desert corridor operations.',
+    logo: '/Yunus Energy.png',
+    image: '/projects/yunus energy wind farm jhimpir.jpg'
+  },
 
   // Elevator (V-Shift) Projects (9 real projects)
   {
@@ -387,7 +437,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'V-Shift Industrial Dual Pack',
     description: 'Combined heavy tonnage cargo elevator for pallet transport alongside a smooth VVVF executive passenger elevator.',
     logo: '/Suncrop-Foods-Logo-removebg-preview.png',
-    image: '/projects/patron chemicals industrial estate.png'
+    image: '/projects/suncrop foods processing complex.jpg'
   },
   {
     id: 'vshift-7',
@@ -411,7 +461,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'V-Shift Prime MRL',
     description: 'Smooth gearless machine-room-less elevator providing seamless floor transit with energy regeneration.',
     logo: '/Yaqoob Group.png',
-    image: '/projects/city center multan.png'
+    image: '/projects/yaqoob group building.jpg'
   },
   {
     id: 'vshift-9',
@@ -423,7 +473,7 @@ export const PROJECTS_LIST: Project[] = [
     brandOrType: 'V-Shift Precision Series',
     description: 'Modernized vertical mobility infrastructure with digital floor indicators and touch-free sensor car operating panels.',
     logo: '/Sinaco Engineers.png',
-    image: '/projects/al shifa faisalbad.png'
+    image: '/projects/sinaco engineers pvt ltd.jpg'
   }
 ];
 
@@ -452,5 +502,8 @@ export const CLIENT_LOGOS: ClientLogo[] = [
   { name: 'Sinaco', label: 'Sinaco Engineers Pvt Ltd', category: 'Engineering & Manufacturing', logo: '/Sinaco Engineers.png' },
   { name: 'PCPA', label: 'PCPA Headquarters', category: 'Corporate Association', logo: '/PCPA-removebg-preview.png' },
   { name: 'DHA Quetta', label: 'The Hanna Mall DHA', category: 'Prime Commercial Retail', logo: '/DHA qUETTA.png' },
-  { name: 'DHA Bahawalpur', label: 'PEP Complex DHA', category: 'Administrative Authority', logo: '/DHA Bahawalpur.png' }
+  { name: 'DHA Bahawalpur', label: 'PEP Complex DHA', category: 'Administrative Authority', logo: '/DHA Bahawalpur.png' },
+  { name: 'PC Hotel', label: 'Zaver PC Hotel Gwadar', category: 'Luxury Hospitality', logo: '/PC Hotel Gwadar.jpg' },
+  { name: 'Safe City', label: 'Quetta Safe City Project', category: 'Mission-Critical & Government', logo: '/Quetta Safe City.jpg' },
+  { name: 'Yunus Energy', label: 'Yunus Energy Wind Farm', category: 'Industrial & Energy', logo: '/Yunus Energy.png' }
 ];

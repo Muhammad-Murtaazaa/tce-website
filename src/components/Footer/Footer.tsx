@@ -65,7 +65,7 @@ export const Footer: FC = () => {
               <h4 className="footer-col-title">Company</h4>
               <ul className="footer-clean-links">
                 <li><a href="#about">About TCE Multan</a></li>
-                <li><a href="#projects">Flagship Projects (33+)</a></li>
+                <li><a href="#projects">Flagship Projects (37+)</a></li>
                 <li><a href="#trusted-brands">Authorized OEM Partners</a></li>
                 <li><a href="#contact">Multan Head Office</a></li>
               </ul>

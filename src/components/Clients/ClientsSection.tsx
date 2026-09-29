@@ -30,7 +30,7 @@ const CLIENT_SECTORS: ClientSector[] = [
   {
     name: 'Heavy Industry & Chemicals',
     category: 'Fertilizer & Process Plants',
-    highlight: 'Pak Arab Fertilizer, FFC Goth Machi, Patron Chemicals & UCH Power',
+    highlight: 'Pak Arab Fertilizer, FFC Goth Machi, Patron Chemicals, UCH Power & Yunus Energy',
     badge: 'Industrial Duty',
     icon: Factory,
     logos: [
@@ -38,7 +38,8 @@ const CLIENT_SECTORS: ClientSector[] = [
       { name: 'FFC Goth Machi', logo: '/FFC.png' },
       { name: 'Patron Chemicals', logo: '/Patron%20group.png' },
       { name: 'Nuchem', logo: '/Nuchem.png' },
-      { name: 'UCH Power Plant', logo: '/UCH.png' }
+      { name: 'UCH Power Plant', logo: '/UCH.png' },
+      { name: 'Yunus Energy', logo: '/Yunus%20Energy.png' }
     ]
   },
   {
@@ -57,14 +58,15 @@ const CLIENT_SECTORS: ClientSector[] = [
   {
     name: 'Commercial Banking & Corporate Towers',
     category: 'Financial HQs & Plaza Networks',
-    highlight: 'Allied Bank Regional Head Office, Sharif Complex & Servo Oil',
+    highlight: 'Allied Bank Regional Head Office, Sharif Complex, Servo Oil & Quetta Safe City',
     badge: 'VRV Multi-Zone',
     icon: Building2,
     logos: [
       { name: 'Allied Bank', logo: '/Allied%20Bank.png' },
       { name: 'Sharif Complex', logo: '/Sharif%20COmplex.png' },
       { name: 'PCPA Office', logo: '/PCPA-removebg-preview.png' },
-      { name: 'Servo Oil', logo: '/SERVO.png' }
+      { name: 'Servo Oil', logo: '/SERVO.png' },
+      { name: 'Quetta Safe City', logo: '/Quetta%20Safe%20City.jpg' }
     ]
   },
   {
@@ -92,7 +94,7 @@ const CLIENT_SECTORS: ClientSector[] = [
   {
     name: 'Hospitality, F&B & Retail Malls',
     category: 'Fast-Casual, Marquees & Malls',
-    highlight: 'KFC South Punjab, 14th Street Pizza, SOHA Mall & DHA Projects',
+    highlight: 'KFC South Punjab, 14th Street Pizza, SOHA Mall, DHA Projects & Zaver PC Hotel',
     badge: 'Concourse & Kitchen MEP',
     icon: Store,
     logos: [
@@ -100,7 +102,8 @@ const CLIENT_SECTORS: ClientSector[] = [
       { name: '14th Street Pizza', logo: '/14%20street%20pizza.png' },
       { name: 'SOHA Mall', logo: '/SOHA%20Mall.png' },
       { name: 'DHA Bahawalpur', logo: '/DHA%20Bahawalpur.png' },
-      { name: 'DHA Quetta', logo: '/DHA%20qUETTA.png' }
+      { name: 'DHA Quetta', logo: '/DHA%20qUETTA.png' },
+      { name: 'Zaver PC Hotel', logo: '/PC%20Hotel%20Gwadar.jpg' }
     ]
   }
 ];

@@ -25,7 +25,7 @@ export const AnnouncementBar: FC<AnnouncementBarProps> = ({ onOpenSchedule }) =>
           <div className="announcement-divider" />
           <a href="#services">V-Shift Elevators</a>
           <div className="announcement-divider" />
-          <a href="#projects">Projects (33)</a>
+          <a href="#projects">Projects (37)</a>
           <div className="announcement-divider" />
           <a href="#trusted-brands">Trusted Brands</a>
           <div className="announcement-divider" />

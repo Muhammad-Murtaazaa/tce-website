@@ -22,9 +22,9 @@ const MOBILE_CATEGORIES: NavCategory[] = [
     title: 'V-Shift Elevators',
     icon: Building2,
     links: [
-      { name: 'Passenger Lifts (MRL & Gearless)', href: '#services' },
-      { name: 'Industrial Heavy Cargo Lifts', href: '#services' },
-      { name: 'Elevator Modernization & AMC', href: '#services' }
+      { name: 'Passenger & Panoramic Cabins', href: '#elevator-cabin-showcase' },
+      { name: 'Villa & Home Platform Lifts', href: '#elevator-cabin-showcase' },
+      { name: 'Elevator Cabin Photo Showcase (13 Series)', href: '#elevator-cabin-showcase' }
     ]
   },
   {
@@ -43,7 +43,7 @@ const MOBILE_CATEGORIES: NavCategory[] = [
       { name: 'Healthcare Projects (Ayat & Al-Shifa)', href: '#projects' },
       { name: 'Industrial Plants (PepsiCo & FFC)', href: '#projects' },
       { name: 'Corporate Commercial Towers', href: '#projects' },
-      { name: 'Elevator Installations (33+ Completed)', href: '#projects' }
+      { name: 'Installation Portfolio (37+ Completed)', href: '#projects' }
     ]
   }
 ];
@@ -97,7 +97,7 @@ export const Navbar: FC<NavbarProps> = ({
             Services
           </a>
           <a href="#projects" onClick={onCloseMobile} className="drawer-quick-link">
-            Projects (33+)
+            Projects (37+)
           </a>
           <a href="#trusted-brands" onClick={onCloseMobile} className="drawer-quick-link">
             Brands

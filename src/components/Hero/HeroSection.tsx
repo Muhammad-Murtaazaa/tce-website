@@ -41,7 +41,7 @@ export const HeroSection: FC = () => {
 
               <a href="#projects" className="btn-hero-secondary" title="Explore Commissioned Projects">
                 <Building2 size={18} />
-                <span>View 33 Projects</span>
+                <span>View 37 Projects</span>
               </a>
             </div>
           </div>

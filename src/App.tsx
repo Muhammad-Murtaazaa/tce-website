@@ -3,6 +3,7 @@ import { MainHeader } from './components/Header/MainHeader';
 import { Navbar } from './components/Header/Navbar';
 import { HeroSection } from './components/Hero/HeroSection';
 import { ServiceCards } from './components/Hero/ServiceCards';
+import { ServicesSection } from './components/Services/ServicesSection';
 import { BrandsMarqueeSection } from './components/Clients/BrandsMarqueeSection';
 import { ProjectsSection } from './components/Projects/ProjectsSection';
 import { ClientsSection } from './components/Clients/ClientsSection';
@@ -40,7 +41,10 @@ export function App() {
         {/* 5. Peeking Service Quick Cards (HVAC, Elevators, Copper/Ducting) */}
         <ServiceCards />
 
-        {/* 6. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
+        {/* 6. Total Engineering Services & V-Shift Elevator Cabin Architecture Carousel */}
+        <ServicesSection />
+
+        {/* 7. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
         <section className="credibility-trust-section">
           <div className="container">
             <div className="credibility-trust-grid">

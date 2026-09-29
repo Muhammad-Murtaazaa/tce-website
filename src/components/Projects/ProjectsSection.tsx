@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, type FC } from 'react';
+import { useState, useMemo, useRef, useEffect, type FC } from 'react';
 import {
   Building2,
   Wind,
@@ -19,9 +19,14 @@ import {
 export const ProjectsSection: FC = () => {
   const [verticalFilter, setVerticalFilter] = useState<VerticalType>('all');
   const [sectorFilter, setSectorFilter] = useState<SectorType>('all');
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
-  const [slideDirection, setSlideDirection] = useState<'next' | 'prev'>('next');
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isHoveredRef = useRef<boolean>(false);
+  const isMouseDownRef = useRef<boolean>(false);
+  const startXRef = useRef<number>(0);
+  const scrollLeftStartRef = useRef<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const rafIdRef = useRef<number | null>(null);
 
   // Compute filtered projects
   const filteredProjects = useMemo(() => {
@@ -32,98 +37,147 @@ export const ProjectsSection: FC = () => {
     });
   }, [verticalFilter, sectorFilter]);
 
-  // Responsive cards per page calculation (1 on mobile, 2 on tablet, 3 on desktop)
-  const [cardsPerPage, setCardsPerPage] = useState<number>(() => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 768) return 1;
-      if (window.innerWidth < 1024) return 2;
+  // Duplicate filtered projects in 3 sets for seamless infinite scrolling in both directions
+  const displayProjects = useMemo(() => {
+    if (filteredProjects.length === 0) return [];
+    let list = [...filteredProjects];
+    while (list.length < 8) {
+      list = [...list, ...filteredProjects];
     }
-    return 3;
-  });
+    return [...list, ...list, ...list];
+  }, [filteredProjects]);
 
+  // Position initial scroll position to middle set (Set 2 of 3)
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCardsPerPage(1);
-      } else if (window.innerWidth < 1024) {
-        setCardsPerPage(2);
-      } else {
-        setCardsPerPage(3);
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const initMiddle = () => {
+      const oneThird = el.scrollWidth / 3;
+      if (oneThird > 0) {
+        el.scrollLeft = oneThird;
       }
     };
+    initMiddle();
+    const t = setTimeout(initMiddle, 60);
+    return () => clearTimeout(t);
+  }, [displayProjects]);
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const totalPages = Math.max(1, Math.ceil(filteredProjects.length / cardsPerPage));
-
-  // Reset to first slide whenever filters or cardsPerPage change
+  // Continuous auto-glide animation loop
   useEffect(() => {
-    setCurrentPage(0);
-  }, [verticalFilter, sectorFilter, cardsPerPage]);
+    const el = scrollContainerRef.current;
+    if (!el) return;
 
-  // Ensure currentPage is always within bounds
-  useEffect(() => {
-    if (currentPage >= totalPages) {
-      setCurrentPage(Math.max(0, totalPages - 1));
+    let lastTime = performance.now();
+
+    const loop = (currentTime: number) => {
+      const delta = (currentTime - lastTime) / 1000;
+      lastTime = currentTime;
+
+      // Continuously glide when not hovered and not actively dragged
+      if (!isHoveredRef.current && !isMouseDownRef.current && el) {
+        el.scrollLeft += 48 * delta; // Silky smooth ~48px/s
+
+        // Seamless infinite wrap-around
+        const oneThird = el.scrollWidth / 3;
+        if (oneThird > 0) {
+          if (el.scrollLeft >= oneThird * 2) {
+            el.scrollLeft -= oneThird;
+          } else if (el.scrollLeft <= 20) {
+            el.scrollLeft += oneThird;
+          }
+        }
+      }
+
+      rafIdRef.current = requestAnimationFrame(loop);
+    };
+
+    rafIdRef.current = requestAnimationFrame(loop);
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, [displayProjects]);
+
+  // Handle wrap-around during user drag or smooth arrow scroll
+  const handleScroll = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const oneThird = el.scrollWidth / 3;
+    if (oneThird > 0) {
+      if (el.scrollLeft >= oneThird * 2 + 400) {
+        el.scrollLeft -= oneThird;
+      } else if (el.scrollLeft <= 50) {
+        el.scrollLeft += oneThird;
+      }
     }
-  }, [totalPages, currentPage]);
-
-  // Continuous autoplay motion: automatically advances projects every 4.5 seconds
-  useEffect(() => {
-    if (isPaused || totalPages <= 1) return;
-    const interval = setInterval(() => {
-      setSlideDirection('next');
-      setCurrentPage((prev) => (prev + 1) % totalPages);
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPaused, totalPages]);
-
-  const handlePrevPage = () => {
-    setSlideDirection('prev');
-    setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   };
 
-  const handleNextPage = () => {
-    setSlideDirection('next');
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  // Touch Swipe Gesture Support for Mobile
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsPaused(true);
-    setTouchEndX(null);
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    setIsPaused(false);
-    if (touchStartX === null || touchEndX === null) return;
-    const diff = touchStartX - touchEndX;
-    const threshold = 40; // minimum swipe distance in px
-    if (diff > threshold) {
-      // Swiped left -> next
-      handleNextPage();
-    } else if (diff < -threshold) {
-      // Swiped right -> prev
-      handlePrevPage();
+  const getCardStep = () => {
+    if (scrollContainerRef.current) {
+      const firstCard = scrollContainerRef.current.querySelector('.project-card') as HTMLElement;
+      if (firstCard) {
+        return firstCard.offsetWidth + 24;
+      }
     }
-    setTouchStartX(null);
-    setTouchEndX(null);
+    return window.innerWidth < 768 ? 334 : 404;
   };
 
-  const currentProjects = useMemo(() => {
-    const start = currentPage * cardsPerPage;
-    return filteredProjects.slice(start, start + cardsPerPage);
-  }, [filteredProjects, currentPage, cardsPerPage]);
+  // Next Arrow: jump to the next project card
+  const handleNext = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const step = getCardStep();
+    el.scrollBy({ left: step, behavior: 'smooth' });
+  };
+
+  // Prev Arrow: jump to the previous project card
+  const handlePrev = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const step = getCardStep();
+    el.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+
+  // Mouse hover & drag interaction handlers (allows fast movement on hover)
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    isHoveredRef.current = false;
+    isMouseDownRef.current = false;
+    setIsDragging(false);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    isMouseDownRef.current = true;
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftStartRef.current = el.scrollLeft;
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDownRef.current || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startXRef.current) * 1.5;
+    scrollContainerRef.current.scrollLeft = scrollLeftStartRef.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isMouseDownRef.current = false;
+    setIsDragging(false);
+  };
+
+  // Mouse wheel / trackpad scroll support
+  const handleWheel = (e: React.WheelEvent) => {
+    if (!scrollContainerRef.current) return;
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) > 4) {
+      scrollContainerRef.current.scrollLeft += delta * 1.2;
+    }
+  };
 
   const hvacCount = PROJECTS_LIST.filter((p) => p.vertical === 'hvac').length;
   const elevatorCount = PROJECTS_LIST.filter((p) => p.vertical === 'elevators').length;
@@ -135,6 +189,8 @@ export const ProjectsSection: FC = () => {
     'Healthcare',
     'Retail',
     'F&B',
+    'Hospitality',
+    'Government',
     'Education',
     'Religious',
     'Residential'
@@ -149,8 +205,8 @@ export const ProjectsSection: FC = () => {
             Flagship HVAC-R & <span className="text-highlight-red">V-Shift Elevator</span> Projects
           </h2>
           <p className="section-subtitle">
-            Explore our carousel of 33 mission-critical installations across Pakistan—from heavy industrial fertilizer plants
-            and healthcare cleanrooms to corporate banking headquarters and multi-story passenger lift banks.
+            Explore our carousel of {PROJECTS_LIST.length} mission-critical installations across Pakistan—from luxury coastal resorts
+            and heavy industrial fertilizer plants to corporate banking headquarters and multi-story passenger lift banks.
           </p>
         </div>
 
@@ -195,174 +251,146 @@ export const ProjectsSection: FC = () => {
           </div>
         </div>
 
-        {/* 3. Carousel Controls Bar */}
-        <div className="carousel-controls-bar">
-          <div className="carousel-status-info">
-            <span>
-              Showing projects <strong>{filteredProjects.length > 0 ? currentPage * cardsPerPage + 1 : 0}–{Math.min((currentPage + 1) * cardsPerPage, filteredProjects.length)}</strong> of <strong>{filteredProjects.length}</strong>
-            </span>
-            {(verticalFilter !== 'all' || sectorFilter !== 'all') && (
-              <button
-                className="btn-clear-filters"
-                onClick={() => {
-                  setVerticalFilter('all');
-                  setSectorFilter('all');
-                }}
-              >
-                Reset Filters
-              </button>
-            )}
-          </div>
-
-          {/* Arrow Buttons */}
-          <div className="carousel-nav-buttons">
+        {/* Reset filters pill if filters applied */}
+        {(verticalFilter !== 'all' || sectorFilter !== 'all') && (
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
             <button
-              className="carousel-btn prev-btn"
-              onClick={handlePrevPage}
-              aria-label="Previous projects slide"
-              title="Previous Slide"
+              className="btn-clear-filters"
+              onClick={() => {
+                setVerticalFilter('all');
+                setSectorFilter('all');
+              }}
             >
-              <ChevronLeft size={20} />
+              Reset Filters ({filteredProjects.length} found)
             </button>
-            <span className="carousel-page-indicator">
-              Slide {currentPage + 1} / {totalPages}
-            </span>
-            <button
-              className="carousel-btn next-btn"
-              onClick={handleNextPage}
-              aria-label="Next projects slide"
-              title="Next Slide"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* 4. Projects Carousel Cards Grid with Animated Motion & Touch Gestures */}
-        <div
-          className="projects-carousel-wrapper"
-          key={currentPage}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className="projects-grid">
-            {currentProjects.map((project, pIdx) => (
-              <div
-                key={project.id}
-                className={`project-card carousel-card-enter ${
-                  slideDirection === 'next' ? 'slide-from-right' : 'slide-from-left'
-                }`}
-                style={{ animationDelay: `${pIdx * 0.08}s` }}
-              >
-                {/* Background Project Photograph */}
-                {project.image && (
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="project-card-bg-img"
-                    loading="lazy"
-                  />
-                )}
-
-                {/* Dark Gradient Overlay for Maximum Readability */}
-                <div className="project-card-overlay" />
-
-                {/* Card Content Foreground */}
-                <div className="project-card-content">
-                  {/* Card Header */}
-                  <div className="project-card-header">
-                    <div className="project-card-top-bar">
-                      <div className="project-tags-row">
-                        <span
-                          className={`project-division-badge ${
-                            project.vertical === 'elevators' ? 'badge-elevator' : 'badge-hvac'
-                          }`}
-                        >
-                          {project.vertical === 'elevators' ? 'V-Shift Elevators' : 'HVAC-R Solutions'}
-                        </span>
-                        <span className="project-sector-tag">{project.sector}</span>
-                      </div>
-
-                      {project.logo && (
-                        <div className="project-logo-badge" title={`${project.name} Logo`}>
-                          <img src={project.logo} alt={project.name} className="project-badge-img" loading="lazy" />
-                        </div>
-                      )}
-                    </div>
-
-                    <h3 className="project-card-title">{project.name}</h3>
-
-                    <div className="project-meta-location">
-                      <MapPin size={14} className="text-location" />
-                      <span>{project.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="project-card-body">
-                    <div className="project-system-badge">
-                      {project.vertical === 'elevators' ? (
-                        <Building2 size={15} color="#fbbf24" />
-                      ) : (
-                        <Layers size={15} color="#38bdf8" />
-                      )}
-                      <strong>{project.brandOrType}</strong>
-                    </div>
-
-                    <div className="project-spec-title">
-                      <Wrench size={13} style={{ marginRight: '6px', display: 'inline' }} />
-                      {project.system}
-                    </div>
-
-                    <p className="project-description">{project.description}</p>
-                  </div>
-
-                  {/* Card Footer */}
-                  <div className="project-card-footer">
-                    <div className="project-verified-tag">
-                      <CheckCircle2 size={14} color="#4ade80" />
-                      <span>Commissioned & Verified</span>
-                    </div>
-                    <span className="project-id-chip">{project.id.toUpperCase()}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Dot Indicators & Mobile Progress */}
-        {totalPages > 1 && (
-          <div className="carousel-dots-container">
-            {/* Mobile Progress Bar (active on mobile) */}
-            <div className="carousel-mobile-progress-wrap" aria-hidden="true">
-              <div
-                className="carousel-mobile-progress-bar"
-                style={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
-              />
-            </div>
-
-            {/* Desktop & Tablet Dot Indicators */}
-            <div className="carousel-dots-row">
-              {Array.from({ length: totalPages }).map((_, dotIdx) => (
-                <button
-                  key={dotIdx}
-                  className={`carousel-dot ${dotIdx === currentPage ? 'active' : ''}`}
-                  onClick={() => setCurrentPage(dotIdx)}
-                  aria-label={`Jump to slide ${dotIdx + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Mobile Swipe Hint */}
-            <div className="carousel-swipe-hint">
-              <span>← Swipe cards or tap arrows to navigate ({currentPage + 1}/{totalPages}) →</span>
-            </div>
           </div>
         )}
+      </div>
+
+      {/* 2. Full-Width Continuous Moving Projects Carousel */}
+      <div
+        className="projects-marquee-viewport"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Soft edge gradient fades */}
+        <div className="projects-fade-left" aria-hidden="true" />
+        <div className="projects-fade-right" aria-hidden="true" />
+
+        {/* Floating Left Navigation Arrow Button: jumps to previous project */}
+        <button
+          type="button"
+          className="projects-side-nav-btn prev-btn"
+          onClick={handlePrev}
+          aria-label="Previous project"
+          title="Previous Project"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        {/* Floating Right Navigation Arrow Button: jumps to next project */}
+        <button
+          type="button"
+          className="projects-side-nav-btn next-btn"
+          onClick={handleNext}
+          aria-label="Next project"
+          title="Next Project"
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        <div
+          ref={scrollContainerRef}
+          className={`projects-scroll-container ${isDragging ? 'is-dragging' : ''}`}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onWheel={handleWheel}
+          onScroll={handleScroll}
+        >
+          {displayProjects.map((project, pIdx) => (
+            <div
+              key={`${project.id}-loop-${pIdx}`}
+              className="project-card"
+            >
+              {/* Background Project Photograph */}
+              {project.image && (
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="project-card-bg-img"
+                  loading="lazy"
+                />
+              )}
+
+              {/* Dark Gradient Overlay for Maximum Readability */}
+              <div className="project-card-overlay" />
+
+              {/* Card Content Foreground */}
+              <div className="project-card-content">
+                {/* Card Header */}
+                <div className="project-card-header">
+                  <div className="project-card-top-bar">
+                    <div className="project-tags-row">
+                      <span
+                        className={`project-division-badge ${
+                          project.vertical === 'elevators' ? 'badge-elevator' : 'badge-hvac'
+                        }`}
+                      >
+                        {project.vertical === 'elevators' ? 'V-Shift Elevators' : 'HVAC-R Solutions'}
+                      </span>
+                      <span className="project-sector-tag">{project.sector}</span>
+                    </div>
+
+                    {project.logo && (
+                      <div className="project-logo-badge" title={`${project.name} Logo`}>
+                        <img src={project.logo} alt={project.name} className="project-badge-img" loading="lazy" />
+                      </div>
+                    )}
+                  </div>
+
+                  <h3 className="project-card-title">{project.name}</h3>
+
+                  <div className="project-meta-location">
+                    <MapPin size={14} className="text-location" />
+                    <span>{project.location}</span>
+                  </div>
+                </div>
+
+                {/* Card Body */}
+                <div className="project-card-body">
+                  <div className="project-system-badge">
+                    {project.vertical === 'elevators' ? (
+                      <Building2 size={15} color="#fbbf24" />
+                    ) : (
+                      <Layers size={15} color="#38bdf8" />
+                    )}
+                    <strong>{project.brandOrType}</strong>
+                  </div>
+
+                  <div className="project-spec-title">
+                    <Wrench size={13} style={{ marginRight: '6px', display: 'inline' }} />
+                    {project.system}
+                  </div>
+
+                  <p className="project-description">{project.description}</p>
+                </div>
+
+                {/* Card Footer */}
+                <div className="project-card-footer">
+                  <div className="project-verified-tag">
+                    <CheckCircle2 size={14} color="#4ade80" />
+                    <span>Commissioned & Verified</span>
+                  </div>
+                  <span className="project-id-chip">{project.id.toUpperCase()}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="container">
 
         {/* Bottom Portfolio Guarantee Cards - 3 Distinct Cards in a Single Row */}
         <div className="projects-metrics-row">
@@ -371,7 +399,7 @@ export const ProjectsSection: FC = () => {
               <Building2 size={22} />
             </div>
             <div className="metric-card-content">
-              <span className="metric-card-val">33+</span>
+              <span className="metric-card-val">37+</span>
               <span className="metric-card-label">Major Projects Commissioned in Pakistan</span>
             </div>
           </div>

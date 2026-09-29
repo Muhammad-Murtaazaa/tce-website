@@ -79,17 +79,17 @@ export const MainHeader: FC<MainHeaderProps> = ({
                         <Building2 size={16} className="dropdown-col-icon text-amber" />
                         <span>V-Shift Elevators</span>
                       </div>
-                      <a href="#services" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
-                        <span className="dropdown-item-title">Passenger Elevators</span>
+                      <a href="#elevator-cabin-showcase" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
+                        <span className="dropdown-item-title">Passenger Elevators & Cabins</span>
                         <span className="dropdown-item-desc">Gearless & MRL luxury mobility</span>
                       </a>
-                      <a href="#services" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
-                        <span className="dropdown-item-title">Industrial Cargo Lifts</span>
-                        <span className="dropdown-item-desc">Heavy-duty hydraulic & traction</span>
+                      <a href="#elevator-cabin-showcase" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
+                        <span className="dropdown-item-title">Panoramic & Villa Lifts</span>
+                        <span className="dropdown-item-desc">Observation glass & home platforms</span>
                       </a>
-                      <a href="#services" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
-                        <span className="dropdown-item-title">Maintenance & AMC</span>
-                        <span className="dropdown-item-desc">24/7 safety inspection contracts</span>
+                      <a href="#elevator-cabin-showcase" className="dropdown-item" onClick={() => setShowServicesDropdown(false)}>
+                        <span className="dropdown-item-title text-highlight-red">★ Cabin & Door Photo Showcase</span>
+                        <span className="dropdown-item-desc">Browse 13 elevator models & finishes</span>
                       </a>
                     </div>
 
@@ -136,7 +136,7 @@ export const MainHeader: FC<MainHeaderProps> = ({
             <li className="header-nav-item">
               <a href="#projects" className="header-nav-link">
                 <span>Projects</span>
-                <span className="nav-count-badge">33+</span>
+                <span className="nav-count-badge">37+</span>
               </a>
             </li>
 

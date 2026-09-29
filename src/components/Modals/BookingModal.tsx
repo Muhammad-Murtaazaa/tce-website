@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type FC } from 'react';
-import { X, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle2, ShieldCheck, Send } from 'lucide-react';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -10,18 +10,24 @@ interface BookingModalProps {
 export const BookingModal: FC<BookingModalProps> = ({
   isOpen,
   onClose,
-  defaultService = 'Air Conditioning'
+  defaultService = 'General Engineering Inquiry'
 }) => {
   const [service, setService] = useState(defaultService);
+  const [prevDefault, setPrevDefault] = useState(defaultService);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    date: '',
-    timeSlot: 'Morning (8am - 12pm)',
+    city: '',
     notes: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Sync state if defaultService prop updates while modal is triggered
+  if (defaultService !== prevDefault) {
+    setPrevDefault(defaultService);
+    setService(defaultService);
+  }
 
   if (!isOpen) return null;
 
@@ -32,6 +38,13 @@ export const BookingModal: FC<BookingModalProps> = ({
 
   const handleReset = () => {
     setIsSubmitted(false);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      city: '',
+      notes: ''
+    });
     onClose();
   };
 
@@ -40,9 +53,9 @@ export const BookingModal: FC<BookingModalProps> = ({
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div>
-            <h3>Schedule Service Online</h3>
+            <h3>Request Quotation & Specifications</h3>
             <p style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
-              Quick, convenient dispatch with guaranteed on-time arrival.
+              Direct factory pricing, engineering submittals, and certified field dispatch.
             </p>
           </div>
           <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
@@ -53,12 +66,18 @@ export const BookingModal: FC<BookingModalProps> = ({
         <div className="modal-body">
           {isSubmitted ? (
             <div style={{ textAlign: 'center', padding: '24px 10px' }}>
-              <CheckCircle2 size={64} color="#16a34a" style={{ margin: '0 auto 16px' }} />
-              <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
-                Appointment Confirmed!
+              <CheckCircle2 size={60} color="#16a34a" style={{ margin: '0 auto 16px' }} />
+              <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                Quotation Request Received!
               </h3>
-              <p style={{ color: '#475569', fontSize: '15px', marginBottom: '24px' }}>
-                Thank you, <strong>{formData.name || 'valued client'}</strong>. Our engineering dispatch department in Multan has received your request for <strong>{service}</strong> and our team will contact you shortly at <strong>{formData.phone || '061-6303281 / 0300-4384978'}</strong>.
+              <p style={{ color: '#475569', fontSize: '14.5px', marginBottom: '18px', lineHeight: 1.6 }}>
+                Thank you, <strong>{formData.name || 'valued client'}</strong>. Technicool Engineering's commercial team has received your quotation request for:
+              </p>
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '12px', marginBottom: '20px', fontWeight: 700, color: '#0b4ea2', fontSize: '14px' }}>
+                {service}
+              </div>
+              <p style={{ color: '#64748b', fontSize: '13px', marginBottom: '24px' }}>
+                Our team will contact you shortly at <strong>{formData.phone || 'your phone number'}</strong>. For urgent technical queries, call our Multan head office directly at <a href="tel:0616303281" style={{ color: '#0b4ea2', fontWeight: 700 }}>061-6303281</a>.
               </p>
               <button className="btn-submit-booking" onClick={handleReset}>
                 Done
@@ -67,30 +86,24 @@ export const BookingModal: FC<BookingModalProps> = ({
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label className="form-label">Select Engineering Service Needed</label>
-                <select
-                  className="form-select"
+                <label className="form-label">Selected System / Engineering Model</label>
+                <input
+                  type="text"
+                  className="form-input"
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                >
-                  <option value="Residential Inverter AC">Residential Inverter / Split AC</option>
-                  <option value="Commercial Daikin VRV">Commercial Daikin VRV / VRF Multi-Zone System</option>
-                  <option value="Light Commercial Cassette">Light Commercial (Cassette / Ducted / Floor Standing)</option>
-                  <option value="V-Shift Passenger Elevator">V-Shift Passenger Elevator (MRL / Traction)</option>
-                  <option value="V-Shift Cargo Lift">V-Shift Heavy Industrial Cargo & Freight Lift</option>
-                  <option value="Copper Piping & Ducting">Copper Piping & Sheet Metal Ducting Fabrication</option>
-                  <option value="Preventative AMC">Annual Preventative Maintenance Contract (AMC)</option>
-                  <option value="Emergency Field Dispatch">🚨 Priority Emergency HVAC / Elevator Dispatch</option>
-                </select>
+                  placeholder="e.g. V-Shift Passenger Elevator FJT-K001"
+                  required
+                />
               </div>
 
               <div className="form-grid-2">
                 <div className="form-group">
-                  <label className="form-label">Full Name</label>
+                  <label className="form-label">Full Name *</label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Sarah Jenkins"
+                    placeholder="e.g. Engr. Ahmad Khan"
                     className="form-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -98,11 +111,11 @@ export const BookingModal: FC<BookingModalProps> = ({
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Phone Number</label>
+                  <label className="form-label">Phone Number *</label>
                   <input
                     type="tel"
                     required
-                    placeholder="(555) 000-0000"
+                    placeholder="0300-1234567"
                     className="form-input"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -112,36 +125,34 @@ export const BookingModal: FC<BookingModalProps> = ({
 
               <div className="form-grid-2">
                 <div className="form-group">
-                  <label className="form-label">Preferred Date</label>
+                  <label className="form-label">Email Address</label>
                   <input
-                    type="date"
-                    required
+                    type="email"
+                    placeholder="name@company.com"
                     className="form-input"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Preferred Time Window</label>
-                  <select
-                    className="form-select"
-                    value={formData.timeSlot}
-                    onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                  >
-                    <option value="Morning (8am - 12pm)">Morning (8:00 AM – 12:00 PM)</option>
-                    <option value="Afternoon (12pm - 4pm)">Afternoon (12:00 PM – 4:00 PM)</option>
-                    <option value="Evening (4pm - 8pm)">Evening (4:00 PM – 8:00 PM)</option>
-                    <option value="Emergency Now">🚨 Immediate 24/7 Emergency</option>
-                  </select>
+                  <label className="form-label">Project City / Location *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Multan, Lahore, Gwadar"
+                    className="form-input"
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  />
                 </div>
               </div>
 
               <div className="form-group">
-                <label className="form-label">Tell Us About the Problem</label>
+                <label className="form-label">Project Scope & Technical Details</label>
                 <textarea
                   rows={3}
-                  placeholder="Describe any symptoms (e.g. AC blowing warm air, leak under sink, drain backing up)..."
+                  placeholder="Specify floors/stops, passenger capacity, cooling tonnage, building drawings, or required timeline..."
                   className="form-textarea"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -150,11 +161,12 @@ export const BookingModal: FC<BookingModalProps> = ({
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#64748b', fontSize: '12px', marginBottom: '16px' }}>
                 <ShieldCheck size={16} color="#16a34a" />
-                <span>100% Satisfaction Guarantee & Upfront Pricing Before Any Work Begins</span>
+                <span>OEM Certified Warranty • ISO Standard Safety Standards • Upfront Technical Submittals</span>
               </div>
 
               <button type="submit" className="btn-submit-booking">
-                Confirm Appointment Request
+                <Send size={15} style={{ display: 'inline', marginRight: '6px' }} />
+                <span>Submit Quotation Request</span>
               </button>
             </form>
           )}
