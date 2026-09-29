@@ -11,6 +11,7 @@ import {
   Store
 } from 'lucide-react';
 import { OEM_BRANDS, COMPANY_INFO } from '../../data/companyData';
+import { ElevatorShowcase } from '../Services/ElevatorShowcase';
 
 interface ClientLogo {
   name: string;
@@ -152,7 +153,10 @@ export const ClientsSection: FC = () => {
           </div>
         </div>
 
-        {/* 2. OEM Authorized Manufacturer Brands Row */}
+        {/* 2. V-Shift Architectural Elevator Cabin Finishes & Model Series Showcase */}
+        <ElevatorShowcase />
+
+        {/* 3. OEM Authorized Manufacturer Brands Row */}
         <div className="oem-partners-container">
           <div className="oem-header">
             <h3 className="oem-title">Authorized Equipment Brands We Deal In</h3>

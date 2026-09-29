@@ -3,7 +3,6 @@ import { MainHeader } from './components/Header/MainHeader';
 import { Navbar } from './components/Header/Navbar';
 import { HeroSection } from './components/Hero/HeroSection';
 import { ServiceCards } from './components/Hero/ServiceCards';
-import { ServicesSection } from './components/Services/ServicesSection';
 import { BrandsMarqueeSection } from './components/Clients/BrandsMarqueeSection';
 import { ProjectsSection } from './components/Projects/ProjectsSection';
 import { ClientsSection } from './components/Clients/ClientsSection';
@@ -98,11 +97,8 @@ export function App() {
         {/* 8. Flagship Projects Showcase (in an interactive Carousel) */}
         <ProjectsSection />
 
-        {/* 9. Enterprise Clients & Authorized OEM Partners */}
+        {/* 9. Enterprise Clients, Elevator Cabin Showcase & Authorized OEM Partners */}
         <ClientsSection />
-
-        {/* 10. V-Shift Architectural Elevator Cabin Finishes & Model Series Showcase */}
-        <ServicesSection />
       </main>
 
       {/* Corporate Engineering Footer */}

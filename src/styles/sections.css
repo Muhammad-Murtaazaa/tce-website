@@ -3240,6 +3240,7 @@
    ========================================================================== */
 .elevator-showcase-section {
   margin-top: 0;
+  margin-bottom: 64px;
   padding: 44px 0 32px;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 16px;
