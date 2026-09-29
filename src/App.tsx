@@ -41,10 +41,7 @@ export function App() {
         {/* 5. Peeking Service Quick Cards (HVAC, Elevators, Copper/Ducting) */}
         <ServiceCards />
 
-        {/* 6. Total Engineering Services & V-Shift Elevator Cabin Architecture Carousel */}
-        <ServicesSection />
-
-        {/* 7. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
+        {/* 6. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
         <section className="credibility-trust-section">
           <div className="container">
             <div className="credibility-trust-grid">
@@ -98,11 +95,14 @@ export function App() {
         {/* 7. Full-Width Edge-to-Edge Animated Marquee: Trusted by Leading Brands */}
         <BrandsMarqueeSection />
 
-        {/* 9. Flagship Projects Showcase (in an interactive Carousel) */}
+        {/* 8. Flagship Projects Showcase (in an interactive Carousel) */}
         <ProjectsSection />
 
         {/* 9. Enterprise Clients & Authorized OEM Partners */}
         <ClientsSection />
+
+        {/* 10. V-Shift Architectural Elevator Cabin Finishes & Model Series Showcase */}
+        <ServicesSection />
       </main>
 
       {/* Corporate Engineering Footer */}
