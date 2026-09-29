@@ -182,9 +182,6 @@ export const ElevatorShowcase: FC = () => {
     <div id="elevator-cabin-showcase" className="elevator-showcase-section">
       {/* Showcase Sub-Header */}
       <div className="elevator-showcase-head">
-        <div className="elevator-badge-pill">
-          <span>V-Shift Elevators Architectural Portfolio</span>
-        </div>
         <h3 className="elevator-showcase-title">
           Elevator Cabin Finishes & <span className="text-highlight-red">Engineering Series</span>
         </h3>
