@@ -52,19 +52,19 @@ export const HeroSection: FC = () => {
           <span className="hero-brands-label">Factory Authorized Equipment Partners:</span>
           <div className="hero-brands-logos">
             <div className="hero-brand-chip" title="Daikin Authorized Partner">
-              <img src="/Daikin.png" alt="Daikin" className="hero-brand-logo-img" />
+              <img src="/Daikin.png" alt="Daikin Authorized Solutions Partner Logo" className="hero-brand-logo-img" loading="lazy" decoding="async" width="120" height="40" />
             </div>
             <div className="hero-brand-chip" title="Midea Authorized Partner">
-              <img src="/Midea.png" alt="Midea" className="hero-brand-logo-img" />
+              <img src="/Midea.png" alt="Midea Direct Dealership Partner Logo" className="hero-brand-logo-img" loading="lazy" decoding="async" width="120" height="40" />
             </div>
             <div className="hero-brand-chip" title="Acson International">
-              <img src="/Acson.png" alt="Acson" className="hero-brand-logo-img" />
+              <img src="/Acson.png" alt="Acson International Commercial HVAC Logo" className="hero-brand-logo-img" loading="lazy" decoding="async" width="120" height="40" />
             </div>
             <div className="hero-brand-chip" title="Cross Air">
-              <img src="/Cross Air.png" alt="Cross Air" className="hero-brand-logo-img" />
+              <img src="/Cross Air.png" alt="Cross Air Industrial Conditioning Logo" className="hero-brand-logo-img" loading="lazy" decoding="async" width="120" height="40" />
             </div>
             <div className="hero-brand-chip" title="AirX Air Conditioners">
-              <img src="/AirX.png" alt="AirX" className="hero-brand-logo-img" />
+              <img src="/AirX.png" alt="AirX Air Conditioners Channel Partner Logo" className="hero-brand-logo-img" loading="lazy" decoding="async" width="120" height="40" />
             </div>
           </div>
         </div>

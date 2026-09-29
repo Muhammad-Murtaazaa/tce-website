@@ -78,11 +78,11 @@ export const Footer: FC = () => {
                 Factory certified supply and technical commissioning:
               </p>
               <div className="footer-brands-grid">
-                <img src="/Daikin.png" alt="Daikin" className="footer-chip" title="Daikin Authorized Partner" />
-                <img src="/Midea.png" alt="Midea" className="footer-chip" title="Midea Authorized Partner" />
-                <img src="/Acson.png" alt="Acson" className="footer-chip" title="Acson International" />
-                <img src="/Cross Air.png" alt="Cross Air" className="footer-chip" title="Cross Air" />
-                <img src="/AirX.png" alt="AirX" className="footer-chip" title="AirX Air Conditioners" />
+                <img src="/Daikin.png" alt="Daikin Authorized Partner Logo" className="footer-chip" title="Daikin Authorized Partner" loading="lazy" decoding="async" />
+                <img src="/Midea.png" alt="Midea Authorized Dealership Logo" className="footer-chip" title="Midea Authorized Partner" loading="lazy" decoding="async" />
+                <img src="/Acson.png" alt="Acson International Equipment Logo" className="footer-chip" title="Acson International" loading="lazy" decoding="async" />
+                <img src="/Cross Air.png" alt="Cross Air Industrial Conditioning Logo" className="footer-chip" title="Cross Air" loading="lazy" decoding="async" />
+                <img src="/AirX.png" alt="AirX Air Conditioners Partner Logo" className="footer-chip" title="AirX Air Conditioners" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

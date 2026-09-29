@@ -317,9 +317,10 @@ export const ProjectsSection: FC = () => {
               {project.image && (
                 <img
                   src={project.image}
-                  alt={project.name}
+                  alt={`${project.name} - ${project.location} Engineering Installation`}
                   className="project-card-bg-img"
                   loading="lazy"
+                  decoding="async"
                 />
               )}
 
@@ -344,7 +345,7 @@ export const ProjectsSection: FC = () => {
 
                     {project.logo && (
                       <div className="project-logo-badge" title={`${project.name} Logo`}>
-                        <img src={project.logo} alt={project.name} className="project-badge-img" loading="lazy" />
+                        <img src={project.logo} alt={`${project.name} Client Logo`} className="project-badge-img" loading="lazy" decoding="async" />
                       </div>
                     )}
                   </div>

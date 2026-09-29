@@ -41,7 +41,7 @@ export function App() {
         <ServiceCards />
 
         {/* 6. Mid-Page Credibility Trust Bar (Industrial Engineering Tech) */}
-        <section className="credibility-trust-section">
+        <section id="about" className="credibility-trust-section" aria-label="About Technicool Engineering">
           <div className="container">
             <div className="credibility-trust-grid">
               {/* Item 01 */}

@@ -263,9 +263,10 @@ export const ElevatorShowcase: FC = () => {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={`${item.title} - ${item.badge} (${item.modelCodes}) Architectural Specifications`}
                   className="elevator-card-img"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="elevator-media-hover-overlay">
                   <div className="elevator-zoom-pill">
@@ -360,8 +361,9 @@ export const ElevatorShowcase: FC = () => {
             <div className="elevator-lightbox-image-wrap">
               <img
                 src={selectedItemForModal.image}
-                alt={selectedItemForModal.title}
+                alt={`${selectedItemForModal.title} - ${selectedItemForModal.badge} (${selectedItemForModal.modelCodes}) High-Resolution Catalog Sheet`}
                 className="elevator-lightbox-img"
+                decoding="async"
               />
             </div>
 

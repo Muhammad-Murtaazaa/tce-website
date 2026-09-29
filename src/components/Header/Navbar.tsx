@@ -71,8 +71,10 @@ export const Navbar: FC<NavbarProps> = ({
           <div className="drawer-brand">
             <img
               src="/TCE.png"
-              alt="TCE Logo"
+              alt="Technicool Engineering (TCE) Official Logo"
               className="drawer-logo-img"
+              width="44"
+              height="44"
             />
             <div className="drawer-brand-text">
               <span className="drawer-brand-since">Founded 2010 • Multan</span>

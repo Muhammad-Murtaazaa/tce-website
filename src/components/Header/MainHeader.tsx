@@ -26,8 +26,10 @@ export const MainHeader: FC<MainHeaderProps> = ({
         <a href="#hero" className="brand-logo-wrap" title="Technicool Engineering (TCE) Multan">
           <img
             src="/TCE.png"
-            alt="Technicool Engineering (TCE)"
+            alt="Technicool Engineering (TCE) Official Logo"
             className="brand-header-logo-img"
+            width="52"
+            height="52"
           />
           <div className="brand-badge">
             <span className="brand-since">Founded 2010 • Multan</span>

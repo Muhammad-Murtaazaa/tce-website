@@ -36,9 +36,10 @@ export const BrandsMarqueeSection: FC = () => {
               <div className="brand-logo-stage">
                 <img
                   src={client.logo}
-                  alt={client.name}
+                  alt={`${client.name} Client Logo`}
                   className="brand-stage-img"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="brand-info-box">
@@ -56,9 +57,10 @@ export const BrandsMarqueeSection: FC = () => {
               <div className="brand-logo-stage">
                 <img
                   src={client.logo}
-                  alt={client.name}
+                  alt={`${client.name} Client Logo`}
                   className="brand-stage-img"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="brand-info-box">

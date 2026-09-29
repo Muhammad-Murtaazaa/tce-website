@@ -1,6 +1,12 @@
 # Technicool Engineering (TCE) & V-Shift Elevators - robots.txt
+# Website: https://technicoolengineering.com/
+
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /elevators/
+Allow: /projects/
 
-# Direct search engine spiders to primary XML sitemap
+# Sitemaps and AI discovery
 Sitemap: https://technicoolengineering.com/sitemap.xml
+

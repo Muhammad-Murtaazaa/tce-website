@@ -33,7 +33,7 @@ export const ServiceCards: FC = () => {
   ];
 
   return (
-    <div id="services-overview" className="services-overlap-section">
+    <section id="services" className="services-overlap-section" aria-label="Core Engineering Services">
       <div className="container">
         <div className="services-grid">
           {cards.map((card, idx) => (
@@ -56,6 +56,6 @@ export const ServiceCards: FC = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

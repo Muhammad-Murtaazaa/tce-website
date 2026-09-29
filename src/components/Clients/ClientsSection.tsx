@@ -169,7 +169,7 @@ export const ClientsSection: FC = () => {
             {OEM_BRANDS.map((brand, idx) => (
               <div key={idx} className="oem-card">
                 <div className="oem-logo-wrap">
-                  <img src={brand.logo} alt={brand.name} className="oem-brand-img" loading="lazy" />
+                  <img src={brand.logo} alt={`${brand.name} Authorized Partner Logo`} className="oem-brand-img" loading="lazy" decoding="async" />
                 </div>
                 <div className="oem-brand-name">{brand.name}</div>
                 <div className="oem-badge-chip">{brand.badge}</div>
@@ -221,9 +221,10 @@ export const ClientsSection: FC = () => {
                         <div key={cIdx} className="client-logo-chip" title={client.name}>
                           <img
                             src={client.logo}
-                            alt={client.name}
+                            alt={`${client.name} Client Logo`}
                             className="client-logo-img"
                             loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       ))}
